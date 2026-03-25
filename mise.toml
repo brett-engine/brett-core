@@ -3,3 +3,4 @@ hk = "1.39.0"
 rust = "stable"
 pkl = "0.31.0"
 taplo = "0.10.0"
+"pipx:mdformat" = { version = "1.0.0", uvx = false, pipx_args = "--preinstall mdformat-front-matters --preinstall mdformat-toc --preinstall mdformat-tables --preinstall mdformat-wikilink --preinstall mdformat-footnote --preinstall mdformat-mkdocs --preinstall mdformat-rustfmt" }

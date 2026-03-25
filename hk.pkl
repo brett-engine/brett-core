@@ -14,6 +14,12 @@ local formatters = new Mapping<String, Step> {
   ["mise"] = (Builtins.mise) {
     depends = List("taplo_format")
   }
+  ["mdformat"] {
+    glob = List("**/*.md", "**/*.markdown")
+    exclude = List(".claude/**/*.md", ".claude/**/*.markdown")
+    check = "mdformat --check {{files}}"
+    fix = "mdformat {{files}}"
+  }
 }
 
 local checkers = new Mapping<String, Step> {
