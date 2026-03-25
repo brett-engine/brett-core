@@ -1,2 +1,5 @@
 [tools]
+hk = "1.39.0"
 rust = "stable"
+pkl = "0.31.0"
+taplo = "0.10.0"

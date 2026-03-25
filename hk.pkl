@@ -1,0 +1,61 @@
+amends "package://github.com/jdx/hk/releases/download/v1.39.0/hk@1.39.0#/Config.pkl"
+import "package://github.com/jdx/hk/releases/download/v1.39.0/hk@1.39.0#/Builtins.pkl"
+
+local formatters = new Mapping<String, Step> {
+  ["newlines"] = (Builtins.newlines) {
+    types = List("text")
+  }
+  ["trailing_whitespace"] = (Builtins.trailing_whitespace) {
+    types = List("text")
+  }
+  ["cargo_fmt"] = Builtins.cargo_fmt
+  ["taplo_format"] = Builtins.taplo_format
+  ["pkl_format"] = Builtins.pkl_format
+  ["mise"] = (Builtins.mise) {
+    depends = List("taplo_format")
+  }
+}
+
+local checkers = new Mapping<String, Step> {
+  ["taplo"] = (Builtins.taplo) {
+    depends = List("taplo_format")
+  }
+  ["cargo_check"] = Builtins.cargo_check
+  ["pkl"] = (Builtins.pkl) {
+    depends = List("pkl_format")
+  }
+}
+
+local linters = new Mapping<String, Step> {
+  ["cargo_clippy"] = Builtins.cargo_clippy
+  ["cargo_test"] {
+    glob = List("**/*.rs", "Cargo.toml", "Cargo.lock")
+    check = "cargo test"
+    exclusive = true
+  }
+}
+
+local baseHook = new Hook {
+  steps {
+    ["formatters"] = new Group {
+      steps = formatters
+    }
+    ["checkers"] = new Group {
+      steps = checkers
+    }
+  }
+}
+
+hooks {
+  ["pre-commit"] = (baseHook) {
+    fix = true
+    stash = "git"
+  }
+  ["fix"] = (baseHook) {
+    fix = true
+  }
+  ["check"] = baseHook
+  ["lint"] {
+    steps = linters
+  }
+}
