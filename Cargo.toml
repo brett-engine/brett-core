@@ -2,5 +2,11 @@
 name = "brett-core"
 version = "0.1.0"
 edition = "2024"
+license = "GPL-3.0-or-later"
+description = "The core library of the brett-engine."
+homepage = "https://brett-engine.github.io/brett-core/"
+repository = "https://github.com/brett-engine/brett-core"
+keywords = ["abstract games", "general game playing"]
+categories = ["game-engines", "game-development"]
 
 [dependencies]
