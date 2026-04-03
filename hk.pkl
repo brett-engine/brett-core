@@ -50,6 +50,10 @@ local linters = new Mapping<String, Step> {
     check = "cargo test"
     exclusive = true
   }
+  ["zensical"] {
+    glob = List("docs/**/*.md")
+    check = "zensical build --clean"
+  }
 }
 
 local baseHook = new Hook {
