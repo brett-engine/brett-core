@@ -9,9 +9,11 @@ on:
       - "hk.pkl"
       - "Cargo.toml"
       - "Cargo.lock"
+      - "renovate.json"
       - "**/*.rs"
       - "**/*.txt"
       - "**/*.md"
+  workflow_dispatch: {}
 
 permissions: {}
 
