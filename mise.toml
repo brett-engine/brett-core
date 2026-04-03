@@ -4,3 +4,45 @@ rust = "stable"
 pkl = "0.31.0"
 taplo = "0.10.0"
 "pipx:mdformat" = { version = "1.0.0", uvx = false, pipx_args = "--preinstall mdformat-front-matters --preinstall mdformat-toc --preinstall mdformat-tables --preinstall mdformat-wikilink --preinstall mdformat-footnote --preinstall mdformat-mkdocs --preinstall mdformat-rustfmt" }
+
+[tasks.fix]
+description = "Applies formatters and fixable suggestions from checkers."
+usage = """
+  flag "-a --all" help="Run on all files instead of just staged files"
+  arg "[FILES]" var=#true help="Run on specific files"
+"""
+run = """
+{% if usage.all %}
+  hk run fix --all
+{% else %}
+  hk run fix ${usage_files}
+{% endif %}
+"""
+
+[tasks.check]
+description = "Checks compliance with formatters and checkers."
+usage = """
+  flag "-a --all" help="Run on all files instead of just staged files"
+  arg "[FILES]" var=#true help="Run on specific files"
+"""
+run = """
+{% if usage.all %}
+  hk run check --all
+{% else %}
+  hk run check ${usage_files}
+{% endif %}
+"""
+
+[tasks.lint]
+description = "Checks compliance with linters."
+usage = """
+  flag "-a --all" help="Run on all files instead of just staged files"
+  arg "[FILES]" var=#true help="Run on specific files"
+"""
+run = """
+{% if usage.all %}
+  hk run lint --all
+{% else %}
+  hk run lint ${usage_files}
+{% endif %}
+"""
