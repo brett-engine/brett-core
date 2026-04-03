@@ -14,7 +14,7 @@ jobs:
     permissions:
       actions: write
     steps:
-      - uses: MyAlbum/purge-cache@2651a142b9ec4f455a7e9f9240b14e1a8dde9c66 # v2.1.0
+      - uses: MyAlbum/purge-cache@881eb5957687193fa612bf74c0042adc78ea5e54 # v2.2.0
         with:
           accessed: true
           created: false
