@@ -16,7 +16,14 @@ local formatters = new Mapping<String, Step> {
   }
   ["mdformat"] {
     glob = List("**/*.md", "**/*.markdown")
-    exclude = List(".claude/**/*.md", ".claude/**/*.markdown")
+    exclude =
+      List(
+        ".claude/**/*.md",
+        ".claude/**/*.markdown",
+        ".agents/**/*.md",
+        ".agents/**/*.markdown",
+        "AGENTS.md",
+      )
     check = "mdformat --check {{files}}"
     fix = "mdformat {{files}}"
   }
