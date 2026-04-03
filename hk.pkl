@@ -30,6 +30,9 @@ local formatters = new Mapping<String, Step> {
 }
 
 local checkers = new Mapping<String, Step> {
+  ["actionlint"] = Builtins.actionlint
+  ["pinact"] = Builtins.pinact
+  ["ghalint_workflow"] = Builtins.ghalint_workflow
   ["taplo"] = (Builtins.taplo) {
     depends = List("taplo_format")
   }
@@ -37,6 +40,7 @@ local checkers = new Mapping<String, Step> {
   ["pkl"] = (Builtins.pkl) {
     depends = List("pkl_format")
   }
+  ["zizmor"] = Builtins.zizmor
 }
 
 local linters = new Mapping<String, Step> {
