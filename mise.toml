@@ -1,5 +1,5 @@
 [tools]
-hk = "1.42.0"
+hk = "1.44.2"
 rust = "stable"
 pkl = "0.31.1"
 taplo = "0.10.0"
